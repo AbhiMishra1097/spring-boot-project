@@ -1,0 +1,12 @@
+apiVersion: v1 #kubernetes api version
+kind: Service
+metadata:
+  name: spring-boot-project-service
+spec:
+  selector:
+    app: spring-boot-project
+  ports:
+    - protocol: TCP
+      port: 8080 # The port the service is running on in the cluster
+      targetPort: 8080 # The port exposed by the service
+  type: NodePort # The type of service ---get more info about this type ex: NodePort, ClusterIp, LoadBalancer

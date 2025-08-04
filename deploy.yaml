@@ -1,0 +1,20 @@
+apiVersion: apps/v1    # to describe the api version
+kind: Deployment       # telling kubernetes the kind of object we are creating , ex for deployment or service
+metadata:
+  name: spring-boot-project         # this metadata describe the information about application name  and lables
+spec:
+  replicas: 3                  # telling kubernetes that create 3 pods for my application in cluster (No of replicas for this deployment)
+  selector:
+    matchLabels:          # selector and lables should be same in deployment and service as well
+      app: spring-boot-project
+  template:
+    metadata:
+      labels:
+        app: spring-boot-project
+    spec:
+      containers:
+        - name: spring-boot-project       # the name of the container
+          image: spring-boot-project-image
+          imagePullPolicy: Never   # IfNotPresent: if the image is not present in local then it will fetch from dockerhub
+          ports:
+            - containerPort: 8080
